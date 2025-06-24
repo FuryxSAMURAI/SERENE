@@ -1,5 +1,5 @@
 <template>
-    <div class="container__main-sort-dropdown" @click="toggleDropdown">
+    <section class="container__main-sort-dropdown" @click="toggleDropdown">
         <div class="container__main-sort-selected">
             Сортувати: {{ selected.label }}
             <span :class="{ rotated: isOpen }">▲</span>
@@ -10,7 +10,7 @@
                 {{ option.label }}
             </li>
         </ul>
-    </div>
+    </section>
 </template>
 
 <script>

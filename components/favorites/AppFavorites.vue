@@ -8,11 +8,13 @@
         </div>
         <span class="container__main-favorites-block-content-block-hr" v-if="getFavorites.length != 1"></span>
         <div class="container__main-favorites-block-content">
-            <div class="container__main-favorites-block-content-block" v-for="favorite in getFavorites"
-                :key="favorite.id">
+            <div class="container__main-favorites-block-content-block" v-for="(favorite, index) in getFavorites"
+                :key="index">
                 <div class="container__main-favorites-block-content-block-wrapper">
                     <div class="container__main-favorites-block-content-block-wrapper-images">
-                        <img :src="favorite.images" :alt="favorite.title">
+                        <nuxt-link :to="`/product/${favorite.id}`">
+                            <img :src="favorite.images" :alt="favorite.title">
+                        </nuxt-link>
                     </div>
                     <div class="container__main-favorites-block-content-block-wrapper-description">
                         <div class="container__main-favorites-block-content-block-wrapper-description-product">

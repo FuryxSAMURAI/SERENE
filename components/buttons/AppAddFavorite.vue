@@ -10,6 +10,7 @@ export default {
         setFavorites: {
             type: Array,
             required: true,
+            default: () => [],
         }
     },
     methods: {

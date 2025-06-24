@@ -7,9 +7,11 @@
         <div class="container__main-catalog-blocks">
             <div class="container__main-catalog-blocks-block" v-if="getProducts.length"
                 v-for="(product, index) in getProducts" :key="index">
-                <div class="container__main-catalog-blocks-block-img">
-                    <img :src="product.images[0]" :alt="product.title">
-                    <span>-10%</span>
+                <div class="container__main-catalog-blocks-block-img" @click="setReviewed(product)">
+                    <nuxt-link :to="`/product/${product.id}`">
+                        <img :src="product.images[0]" :alt="product.title">
+                        <span>-10%</span>
+                    </nuxt-link>
                 </div>
                 <div class="container__main-catalog-blocks-block-title">{{ product.title }}</div>
                 <div class="container__main-catalog-blocks-block-desc">
@@ -79,7 +81,10 @@ export default {
         },
         showMore() {
             this.fetchMore()
-        }
+        },
+        setReviewed(val) {
+            this.$store.commit('reviewed/setReviewed', val)
+        },
     },
 }
 </script>

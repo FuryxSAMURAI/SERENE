@@ -57,7 +57,7 @@ export default {
 .container__footer {
     background-color: #111;
     color: #f0f0f0;
-    padding: 60px 100px 20px;
+    padding: 0 20px;
 
     &-container {
         display: flex;
@@ -68,7 +68,8 @@ export default {
 
     &-brand {
         user-select: none;
-        width: 400px;
+        width: 100%;
+        max-width: 400px;
         &-title {
             font-size: 28px;
             font-weight: 700;
@@ -76,8 +77,7 @@ export default {
         }
 
         &-slogan {
-            font-size: 15px;
-            line-height: 1.6;
+            font-size: clamp(12px, 2vw, 14px);
             color: #aaa;
         }
     }

@@ -1,8 +1,11 @@
 <template>
     <section class="container__main-sort-title">
-        <div class="container__main-sort-title-title">Сортувати за назвою:</div>
+        <div class="container__main-sort-title-title" @click="toggleDropdown">
+            Сортувати за назвою:
+            <span :class="{ rotated: isOpen }">▲</span>
+        </div>
 
-        <div class="container__main-sort-title-lists" v-if="getTitles.length">
+        <div class="container__main-sort-title-lists" v-if="getTitles.length" v-show="isOpen">
             <input class="container__main-sort-title-lists-search" type="text" placeholder="Search ..."
                 v-model="search" />
 
@@ -29,15 +32,17 @@ export default {
         return {
             search: '',
             selectedTitles: [],
+            isOpen: false,
         }
     },
     computed: {
         ...mapGetters('filter', ['getTitles']),
-
         filteredTitles() {
             const s = this.search.toLowerCase().trim()
-            return this.getTitles.filter(t => t.title.toLowerCase().includes(s))
-        }
+            return this.getTitles.filter(t =>
+                t.title.toLowerCase().includes(s)
+            )
+        },
     },
     watch: {
         selectedTitles: {
@@ -46,10 +51,15 @@ export default {
                 this.$store.dispatch('catalog/fetchPage', 1)
             },
             deep: true,
-        }
+        },
     },
     mounted() {
-        this.$store.dispatch('filter/getProducts')
-    }
+        this.$store.dispatch('filter/getTitles')
+    },
+    methods: {
+        toggleDropdown() {
+            this.isOpen = !this.isOpen
+        },
+    },
 }
 </script>

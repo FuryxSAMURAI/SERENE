@@ -19,23 +19,24 @@
 <style scoped lang="scss">
 .container__main-loyalty {
     &-block {
-        height: 150px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin: 0 auto;
+        padding: 60px 20px;
         background-color: #111;
-        padding: 20px 100px;
+        transition: all .3s ease;
 
         &-description {
             &-title {
                 color: #fff;
-                font-size: 24px;
+                font-size: clamp(18px, 2vw, 24px);
                 line-height: 28px;
             }
 
             &-subtitle {
-                font-size: 14px;
+                margin-top: 10px;
+                font-size: clamp(14px, 2vw, 18px);
                 line-height: 18px;
                 color: #898686;
             }
@@ -55,6 +56,19 @@
                 color: #111;
                 text-decoration: none;
 
+            }
+        }
+    }
+}
+
+@media(max-width:768px) {
+    .container__main-loyalty {
+        &-block {
+            display: block;
+            padding: 0 20px 20px;
+            &-get {
+                margin-top: 20px;
+                width: 100%;
             }
         }
     }

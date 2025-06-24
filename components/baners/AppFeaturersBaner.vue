@@ -45,46 +45,65 @@ export default {
 
 
 <style scoped lang="scss">
-    .container__main-featurers{
-        &-blocks{
-            display: grid;
-            justify-content: center;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            grid-gap: 40px;
-        }
-        &-block{
-            width: 300px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            &-img{
-                height: 40px;
-                width: 40px;
-                background-color: #fbf8f8;
-                border-radius: 3px;
-                padding: 5px;
-                img{
-                    height: 30px;
-                    width: 30px;
+.container__main-featurers {
+    margin: 40px 0;
 
-                }
+    &-blocks {
+        display: grid;
+        justify-items: center;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-gap: 40px;
+    }
+
+    &-block {
+        width: 300px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        &-img {
+            height: 40px;
+            width: 40px;
+            background-color: #fbf8f8;
+            border-radius: 3px;
+            padding: 5px;
+
+            img {
+                height: 30px;
+                width: 30px;
+
             }
-            &-description{
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                &-title{
-                    color: #333;
-                    font-size: 14px;
-                    font-weight: bold;
-                    text-transform: uppercase;
-                }
-                &-subtitle{
-                    color: #333;
-                    font-size: 12px;
-                }
+        }
+
+        &-description {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            &-title {
+                color: #333;
+                font-size: 14px;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            &-subtitle {
+                color: #333;
+                font-size: 12px;
             }
         }
     }
+}
+
+@media (max-width:768px) {
+    .container__main-featurers {
+        &-blocks{
+            justify-items: flex-start;
+            grid-gap:0;
+        }
+        &-block {
+            padding: 16px;
+        }
+    }
+}
 </style>

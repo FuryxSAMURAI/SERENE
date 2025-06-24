@@ -1,21 +1,14 @@
 <template>
   <section class="container__main-sort-category">
-    <div class="container__main-sort-category-title">Сортувати за категорією:</div>
+    <div class="container__main-sort-category-title" @click="toggleDropdown">
+      Сортувати за категорією: <span :class="{ rotated: isOpen }">▲</span>
+    </div>
 
-    <div class="container__main-sort-category-lists" v-if="getCategories.length">
-      <input
-        class="container__main-sort-category-lists-search"
-        type="text"
-        placeholder="Search ..."
-        v-model="search"
-      />
+    <div class="container__main-sort-category-lists" v-if="getCategories.length" v-show="isOpen">
+      <input class="container__main-sort-category-lists-search" type="text" placeholder="Search ..." v-model="search" />
 
       <ul class="container__main-sort-category-lists-ul">
-        <li
-          class="container__main-sort-category-lists-ul-li"
-          v-for="(category, index) in filteredCategories"
-          :key="index"
-        >
+        <li class="container__main-sort-category-lists-ul-li" v-for="(category, index) in filteredCategories" :key="index">
           <label :for="category.slug">
             <input
               type="checkbox"
@@ -41,6 +34,7 @@ export default {
     return {
       search: '',
       selectedSlugs: [],
+      isOpen: false,
     }
   },
   computed: {
@@ -61,6 +55,11 @@ export default {
   },
   mounted() {
     this.$store.dispatch('filter/getCategories')
+  },
+  methods: {
+    toggleDropdown() {
+      this.isOpen = !this.isOpen
+    },
   }
 }
 </script>

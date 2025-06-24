@@ -7,10 +7,12 @@
         </div>
         <span class="container__main-cart-block-content-block-hr" v-if="getCart.length != 1"></span>
         <div class="container__main-cart-block-content">
-            <div class="container__main-cart-block-content-block" v-for="cart in getCart" :key="cart.id">
+            <div class="container__main-cart-block-content-block" v-for="(cart, index) in getCart" :key="index">
                 <div class="container__main-cart-block-content-block-wrapper">
                     <div class="container__main-cart-block-content-block-wrapper-images">
-                        <img :src="cart.images" :alt="cart.title">
+                        <nuxt-link :to="`/product/${cart.id}`">
+                            <img :src="cart.images" :alt="cart.title">
+                        </nuxt-link>
                     </div>
                     <div class="container__main-cart-block-content-block-wrapper-description">
                         <div class="container__main-cart-block-content-block-wrapper-description-product">
@@ -211,15 +213,17 @@ export default {
     .container__main-cart-block {
         width: 100%;
     }
-    .container__main-cart-block-content-block-wrapper-description{
+
+    .container__main-cart-block-content-block-wrapper-description {
         display: block;
     }
 }
 
 @media (max-width: 768px) {
-    .layout__main{
+    .layout__main {
         padding: 0;
     }
+
     .container__main-cart-block-header {
         &-title {
             font-size: 18px;
@@ -267,6 +271,7 @@ export default {
             &-buttons {
                 display: block;
                 gap: 10px;
+
                 button {
                     font-size: 12px;
                 }

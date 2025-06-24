@@ -1,6 +1,6 @@
 <template>
   <div v-if="visible" class="banner-slider" :class="{ show: visible }">
-    <p>
+    <p class="banner-content">
       {{ banners[currentIndex].text }}
       <nuxt-link :to="banners[currentIndex].link" class="banner-link" style="color: #ffffff;">
         {{ banners[currentIndex].cta }}
@@ -71,7 +71,7 @@ export default {
 </script>
 
 
-<style scoped lang="scss">
+<style scoped, lang="scss">
 .banner-slider {
   opacity: 0;
   position: relative;
@@ -79,9 +79,10 @@ export default {
   transition: opacity 0.5s ease, visibility 0.5s ease;
   padding: 5px 0;
   text-align: center;
-  background-color: #f94942;
-  font-size: 12px;
+  background: #f94942;
+  font-size: clamp(8px, 2vw, 12px);
   color: #fff;
+  z-index: 999;
 
   &.show {
     opacity: 1;
@@ -91,7 +92,7 @@ export default {
 
 .banner-link {
   margin-left: 8px;
-  font-size: 12px;
+  font-size: clamp(8px, 2vw, 12px);
   color: #000;
   font-weight: bold;
   text-decoration: underline;
@@ -100,7 +101,7 @@ export default {
 .close-btn {
   position: absolute;
   top: calc(100%/4);
-  right: 50px;
+  right: 25px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -108,6 +109,12 @@ export default {
 
   &:hover {
     color: #fff;
+  }
+}
+
+@media(max-width:768px){
+  .banner-content {
+    padding: 0 60px;
   }
 }
 </style>

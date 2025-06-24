@@ -269,7 +269,7 @@ export default {
     &-menu {
         position: fixed;
         top: 0;
-        right: -100%;
+        right: -1000%;
         width: 100vw;
         height: 100vh;
         background: #fff;
@@ -429,7 +429,7 @@ export default {
 
 @media (max-width: 1260px) {
     .container__header {
-        padding: 0 40px;
+        padding: 0 20px;
 
         &-nav {
             display: none;

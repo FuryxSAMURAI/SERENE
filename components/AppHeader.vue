@@ -57,17 +57,19 @@
                 <nav class="container__header-menu-main-nav">
                     <ul class="container__header-menu-main-nav-ul">
                         <li class="container__header-menu-main-nav-ul-li"><nuxt-link
-                                to="/header/catalog">Каталог</nuxt-link>
+                                to="/header/catalog" @click.native="closeMenu">Каталог</nuxt-link>
                         </li>
-                        <li class="container__header-menu-main-nav-ul-li"><nuxt-link to="/header/about">Про
+                        <li class="container__header-menu-main-nav-ul-li"><nuxt-link to="/header/about" @click.native="closeMenu">Про
                                 нас</nuxt-link></li>
                         <li class="container__header-menu-main-nav-ul-li"><nuxt-link
-                                to="/header/warranty">Гарантії</nuxt-link></li>
+                                to="/header/warranty" @click.native="closeMenu">Гарантії</nuxt-link></li>
                         <li class="container__header-menu-main-nav-ul-li"><nuxt-link
-                                to="/header/reviews">Відгуки</nuxt-link>
+                                to="/header/reviews" ç>Відгуки</nuxt-link>
                         </li>
                         <li class="container__header-menu-main-nav-ul-li"><nuxt-link
-                                to="/header/support">Підтримка</nuxt-link></li>
+                                to="/header/support" @click.native="closeMenu">Підтримка</nuxt-link></li>
+                        <li class="container__header-menu-main-nav-ul-li"><nuxt-link to="/user/profile" @click.native="closeMenu">Увійти /
+                                Зареєструватися</nuxt-link></li>
                     </ul>
                 </nav>
             </div>
@@ -75,10 +77,10 @@
                 <nav class="container__header-menu-footer-info">
                     <h3>Інформація</h3>
                     <ul>
-                        <li><nuxt-link to="/info/delivery">Доставка</nuxt-link></li>
-                        <li><nuxt-link to="/info/returns">Повернення</nuxt-link></li>
-                        <li><nuxt-link to="/info/policy">Конфіденційність</nuxt-link></li>
-                        <li><nuxt-link to="/info/faq">Питання / Відповіді</nuxt-link></li>
+                        <li><nuxt-link to="/info/delivery" @click.native="closeMenu">Доставка</nuxt-link></li>
+                        <li><nuxt-link to="/info/returns" @click.native="closeMenu">Повернення</nuxt-link></li>
+                        <li><nuxt-link to="/info/policy" @click.native="closeMenu">Конфіденційність</nuxt-link></li>
+                        <li><nuxt-link to="/info/faq" @click.native="closeMenu">Питання / Відповіді</nuxt-link></li>
                     </ul>
                 </nav>
 

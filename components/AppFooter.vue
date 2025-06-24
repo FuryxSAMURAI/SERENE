@@ -13,9 +13,10 @@
                 <h3>Магазин</h3>
                 <ul>
                     <li><nuxt-link to="/">Головна</nuxt-link></li>
-                    <li><nuxt-link to="/catalog">Каталог</nuxt-link></li>
-                    <li><nuxt-link to="/sale">Знижки</nuxt-link></li>
-                    <li><nuxt-link to="/about">Про нас</nuxt-link></li>
+                    <li><nuxt-link to="/header/catalog">Каталог</nuxt-link></li>
+                    <li><nuxt-link to="/header/reviews">Відгуки</nuxt-link></li>
+                    <li><nuxt-link to="/header/support">Підтримка</nuxt-link></li>
+                    <li><nuxt-link to="/header/about">Про нас</nuxt-link></li>
                 </ul>
             </div>
 

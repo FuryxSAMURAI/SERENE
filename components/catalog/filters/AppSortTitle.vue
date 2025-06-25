@@ -10,8 +10,8 @@
                 v-model="search" />
 
             <ul class="container__main-sort-title-lists-ul">
-                <li class="container__main-sort-title-lists-ul-li" v-for="(title, index) in filteredTitles"
-                    :key="index">
+                <li class="container__main-sort-title-lists-ul-li" v-for="title in filteredTitles"
+                    :key="title.title">
                     <label :for="title.title">
                         <input type="checkbox" :id="title.title" :value="title.title" v-model="selectedTitles" />
                         {{ title.title }}
@@ -54,7 +54,7 @@ export default {
         },
     },
     mounted() {
-        this.$store.dispatch('filter/getTitles')
+        this.$store.dispatch('filter/getProducts')
     },
     methods: {
         toggleDropdown() {

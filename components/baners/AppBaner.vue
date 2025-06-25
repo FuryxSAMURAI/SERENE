@@ -6,7 +6,8 @@
         {{ banners[currentIndex].cta }}
       </nuxt-link>
     </p>
-    <button class="close-btn" @click="closeBanner"><i class="fa-solid fa-xmark fa-lg" style="color: #ffffff;"></i></button>
+    <button class="close-btn" @click="closeBanner"><i class="fa-solid fa-xmark fa-lg"
+        style="color: #ffffff;"></i></button>
   </div>
 </template>
 
@@ -100,8 +101,9 @@ export default {
 
 .close-btn {
   position: absolute;
-  top: calc(100%/4);
+  top: 50%;
   right: 25px;
+  transform: translateY(-50%);
   background: transparent;
   border: none;
   cursor: pointer;
@@ -112,7 +114,7 @@ export default {
   }
 }
 
-@media(max-width:768px){
+@media(max-width:768px) {
   .banner-content {
     padding: 0 60px;
   }

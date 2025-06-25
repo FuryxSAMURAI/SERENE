@@ -34,10 +34,11 @@ export default {
 
 <style scoped lang="scss">
 .container__main-wrapper {
-    margin: 100px 0 0;
+    padding: 100px 20px 0;
     display: flex;
     flex-direction: column;
     gap: 60px;
+
     &-block {
 
         display: flex;
@@ -51,6 +52,14 @@ export default {
 
         &-catalog {
             flex: 1;
+        }
+    }
+}
+
+@media (max-width:768px) {
+    .container__main-wrapper {
+        &-block {
+            flex-direction: column;
         }
     }
 }

@@ -31,7 +31,11 @@
                 </div>
                 <div class="container__main-user-form-password">
                     <label for="pass">Пароль</label>
-                    <input type="text" name="pass" id="pass">
+                    <div class="container__main-user-form-password-wrapper">
+                        <input :type="visiblePass ? 'text' : 'password'" name="pass" id="pass">
+                        <i :class="visiblePass ? 'fa-solid fa-eye-slash' : 'fa-regular fa-eye'"
+                            @click="togglePassword"></i>
+                    </div>
                 </div>
             </form>
             <button class="container__main-user-submit" type="submit">Увійти</button>
@@ -59,12 +63,18 @@
 export default {
     data() {
         return {
+            visiblePass: false,
         }
     },
-    props:{
-        isLogin:{
+    props: {
+        isLogin: {
             type: Boolean,
             required: true
+        }
+    },
+    methods: {
+        togglePassword() {
+            this.visiblePass = !this.visiblePass;
         }
     }
 }
@@ -220,6 +230,25 @@ export default {
                 }
             }
         }
+
+        &-password {
+            &-wrapper {
+                position: relative;
+
+                input {
+                    padding-right: 40px; 
+                }
+
+                i {
+                    position: absolute;
+                    top: 50%;
+                    right: 12px;
+                    transform: translateY(-50%);
+                    cursor: pointer;
+                    color: #333;
+                }
+            }
+        }
     }
 
     &-submit {
@@ -270,12 +299,14 @@ export default {
             }
         }
 
-        &-buttons{
+        &-buttons {
             margin-top: 15px;
             display: flex;
             flex-direction: column;
             gap: 15px;
-            &-submit, &-get{
+
+            &-submit,
+            &-get {
                 height: 50px;
                 width: 100%;
                 color: #fff;
@@ -283,7 +314,8 @@ export default {
                 border-radius: 3px;
                 background: #333;
             }
-            &-get{
+
+            &-get {
                 background: #fff;
                 color: #333;
                 border: solid 1px #333;

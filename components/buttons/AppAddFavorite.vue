@@ -8,7 +8,7 @@
 export default {
     props: {
         setFavorites: {
-            type: Array,
+            type: Array || Object,
             required: true,
             default: () => [],
         }

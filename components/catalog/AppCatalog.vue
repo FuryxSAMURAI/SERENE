@@ -9,7 +9,7 @@
                 v-for="(product, index) in getProducts" :key="index">
                 <div class="container__main-catalog-blocks-block-img" @click="setReviewed(product)">
                     <nuxt-link :to="`/product/${product.id}`">
-                        <img :src="product.images[0]" :alt="product.title">
+                        <img :src="product.images[0]" :alt="product.title" loading="lazy">
                         <span>-10%</span>
                     </nuxt-link>
                 </div>
@@ -219,6 +219,14 @@ export default {
                     color: #898686;
                 }
             }
+        }
+    }
+}
+
+@media (max-width:768px) {
+    .container__main-catalog {
+        &-blocks {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         }
     }
 }

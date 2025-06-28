@@ -3,7 +3,6 @@
       <app-promo-baner />
       <app-product-category />
       <app-about-store />
-      <h2 class="container__main-title">Відгуки наших покупців</h2>
       <app-comments-block />
   </div>
 </template>

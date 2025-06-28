@@ -46,13 +46,15 @@ export default {
 
 <style scoped lang="scss">
 .container__main-featurers {
-    margin: 40px 0;
+    margin: 40px auto;
+    width: 100%;
+    max-width: 1200px;
 
     &-blocks {
         display: grid;
         justify-items: center;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        grid-gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+        grid-gap: 20px;
     }
 
     &-block {
@@ -82,14 +84,14 @@ export default {
 
             &-title {
                 color: #333;
-                font-size: 14px;
+                font-size: clamp(10px, 2vw, 14px);
                 font-weight: bold;
                 text-transform: uppercase;
             }
 
             &-subtitle {
                 color: #333;
-                font-size: 12px;
+                font-size: clamp(10px, 2vw, 12px);
             }
         }
     }
@@ -102,7 +104,7 @@ export default {
             grid-gap:0;
         }
         &-block {
-            padding: 16px;
+            padding: 16px 0 16px 20px;
         }
     }
 }

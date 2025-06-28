@@ -78,7 +78,8 @@ export default {
 <style scoped lang="scss">
 .container__main-favorites-block {
     width: 100%;
-    margin: 60px 0;
+    margin: 80px auto;
+    max-width: 1200px;
     border-radius: 3px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 

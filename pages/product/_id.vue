@@ -8,7 +8,7 @@
 
                 <div v-else class="container__main-product-images-slider">
                     <button @click="prevSlide" class="container__main-product-slider-btn left">‹</button>
-                    <img :src="product.images[currentSlide]" :alt="product.slug" />
+                    <img :src="product.images[currentSlide]" :alt="product.slug" loading="lazy" />
                     <button @click="nextSlide" class="container__main-product-slider-btn right">›</button>
                 </div>
             </div>
@@ -51,8 +51,15 @@ export default {
     },
     data() {
         return {
-            isMobile: false,
             currentSlide: 0
+        }
+    },
+    computed: {
+        isMobile() {
+            if (process.client) {
+                return window.innerWidth <= 768
+            }
+            return false
         }
     },
     mounted() {
@@ -64,7 +71,7 @@ export default {
     },
     methods: {
         checkMobile() {
-            if(window.innerHeight <= 768){this.isMobile = true}else{this.isMobile = false}
+            if (window.innerHeight <= 768) { this.isMobile = true } else { this.isMobile = false }
         },
         nextSlide() {
             const total = this.product.images.length

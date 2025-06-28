@@ -7,6 +7,7 @@
 
     <main class="layout__main">
       <AppSlideBaner />
+      <AppPreloader />
       <nuxt />
     </main>
 
@@ -23,6 +24,7 @@ import AppHeader from '@/components/AppHeader.vue';
 import AppBaner from '@/components/baners/AppBaner.vue';
 import AppLoyaltyBonusBaner from '../components/baners/AppLoyaltyBonusBaner.vue';
 import AppSlideBaner from '../components/baners/AppSlideBaner.vue';
+import AppPreloader from '../components/preloader/AppPreloader.vue';
 
 export default {
   components: {
@@ -31,6 +33,7 @@ export default {
     AppFooter,
     AppSlideBaner,
     AppLoyaltyBonusBaner,
+    AppPreloader,
   }
 }
 </script>
@@ -47,7 +50,9 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: #fff;
 }
 
 .layout__main {
@@ -59,8 +64,7 @@ export default {
 }
 
 @media (max-width: 1024px) {
-  .layout__main {
-  }
+  .layout__main {}
 }
 
 @media (max-width: 768px) {

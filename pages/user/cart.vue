@@ -32,7 +32,9 @@ export default {
 
 <style>
 .container__main-cart-wrapper {
-    margin: 40px 0;
+    margin: 40px auto;
+    width: 100%;
+    max-width: 1200px;
     display: flex;
     gap: 40px;
 

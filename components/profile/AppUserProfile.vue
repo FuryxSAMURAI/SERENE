@@ -38,7 +38,9 @@
                     </div>
                 </div>
             </form>
-            <button class="container__main-user-submit" type="submit">Увійти</button>
+            <nuxt-link to="/user/cabinet">
+                <button class="container__main-user-submit" type="submit">Увійти</button>
+            </nuxt-link>
         </div>
         <div v-else class="container__main-user-register">
             <div class="container__main-user-register-title">Підтвердіть свій номер телефону, щоб зареєструватися

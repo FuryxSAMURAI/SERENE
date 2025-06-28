@@ -34,10 +34,12 @@ export default {
 
 <style scoped lang="scss">
 .container__main-wrapper {
-    padding: 100px 20px 0;
+    margin: 80px auto 0;
+    padding: 0 20px;
+    width: 100%;
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
-    gap: 60px;
 
     &-block {
 

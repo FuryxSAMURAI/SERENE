@@ -59,6 +59,9 @@ export default {
     background-color: #111;
     color: #f0f0f0;
     padding: 0 20px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
 
     &-container {
         display: flex;

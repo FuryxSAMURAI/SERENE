@@ -74,7 +74,6 @@ export default {
 
 <style scoped lang="scss">
 .container__main-cart-block {
-    width: calc(100vw/1.5);
     margin: 40px 0;
     border-radius: 3px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);

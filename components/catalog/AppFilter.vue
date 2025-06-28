@@ -59,7 +59,7 @@ export default {
 <style scoped lang="scss">
 .container__main-filter-block {
     position: sticky;
-    top: 0;
+    top: 100px;
     left: 0;
     display: flex;
     flex-direction: column;

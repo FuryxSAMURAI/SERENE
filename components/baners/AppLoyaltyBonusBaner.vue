@@ -18,6 +18,9 @@
 
 <style scoped lang="scss">
 .container__main-loyalty {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
     &-block {
         display: flex;
         justify-content: space-between;

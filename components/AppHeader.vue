@@ -134,9 +134,9 @@ export default {
     position: relative;
     height: 80px;
     width: 100%;
-    background-color: #fff;
-    padding: 0 100px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin: 0 auto;
+    max-width: 1200px;
+    background: #fff;
 
     &-logo {
         font-size: 32px;

@@ -9,7 +9,7 @@
 export default {
     props: {
         setCart: {
-            type: Array,
+            type: Array || Object,
             required: true
         }
     },

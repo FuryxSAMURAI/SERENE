@@ -35,7 +35,6 @@ export default {
 <style scoped lang="scss">
 .container__main-wrapper {
     margin: 80px auto 0;
-    padding: 0 20px;
     width: 100%;
     max-width: 1200px;
     display: flex;
@@ -58,10 +57,19 @@ export default {
     }
 }
 
+@media(max-width:1260px){
+    .container__main-wrapper{
+        padding: 0 20px;
+    }
+}
+
 @media (max-width:768px) {
     .container__main-wrapper {
         &-block {
             flex-direction: column;
+            &-filter{
+                display: none;
+            }
         }
     }
 }

@@ -2,29 +2,39 @@
     <section class="container__main-comments">
         <div class="container__main-comments-title">Відгуки наших клієнтів</div>
 
-        <div class="container__main-comments-carousel">
-            <button class="container__main-comments-carousel-arrow left" @click="prevSlide">&#10094;</button>
+        <div class="container__main-comments-carousel-wrapper">
+            <!-- Ліва стрілка -->
+            <button class="container__main-comments-carousel-arrow left" @click="prevSlide">
+                <i class="fa-solid fa-arrow-left fa-lg" style="color: #000000;"></i>
+            </button>
 
-            <div class="container__main-comments-carousel-track-wrapper">
-                <div class="container__main-comments-carousel-track"
-                    :style="{ transform: `translateX(-${currentIndex * slideWidth}px)` }">
-                    <div class="container__main-comments-carousel-slide" v-for="(comment, index) in commentsLoop"
-                        :key="index" ref="slides">
-                        <div class="container__main-comments-carousel-slide-content">
-                            <p class="container__main-comments-carousel-slide-text">"{{ comment.text }}"</p>
-                            <p class="container__main-comments-carousel-slide-author">— {{ comment.author }}</p>
-                            <p class="container__main-comments-carousel-slide-date">Дата: {{ comment.date }}</p>
-                            <p class="container__main-comments-carousel-slide-rating">Оцінка: {{ comment.rating }} з 5
-                            </p>
+            <!-- Слайдер -->
+            <div class="container__main-comments-carousel">
+                <div class="container__main-comments-carousel-track-wrapper">
+                    <div class="container__main-comments-carousel-track"
+                        :style="{ transform: `translateX(-${currentIndex * slideWidth}px)` }">
+                        <div class="container__main-comments-carousel-slide" v-for="(comment, index) in commentsLoop"
+                            :key="index" ref="slides">
+                            <div class="container__main-comments-carousel-slide-content">
+                                <p class="container__main-comments-carousel-slide-text">"{{ comment.text }}"</p>
+                                <p class="container__main-comments-carousel-slide-author">— {{ comment.author }}</p>
+                                <p class="container__main-comments-carousel-slide-date">Дата: {{ comment.date }}</p>
+                                <p class="container__main-comments-carousel-slide-rating">Оцінка: {{ comment.rating }} з
+                                    5</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <button class="container__main-comments-carousel-arrow right" @click="nextSlide">&#10095;</button>
+            <!-- Права стрілка -->
+            <button class="container__main-comments-carousel-arrow right" @click="nextSlide">
+                <i class="fa-solid fa-arrow-right fa-lg" style="color: #000000;"></i>
+            </button>
         </div>
     </section>
 </template>
+
 
 <script>
 export default {
@@ -34,57 +44,81 @@ export default {
             slideWidth: 0,
             interval: null,
             visibleSlides: 4,
-            comments: [{ author: 'Анна', text: 'Дуже якісний товар! Матеріал щільний, пошито акуратно. Доставили швидше, ніж обіцяли. Буду замовляти ще.', date: '2024-12-01', rating: 5 }, { author: 'Олег', text: 'Швидка доставка і гарне пакування. Все прийшло цілим, товар відповідає опису. Рекомендую.', date: '2025-01-14', rating: 5 }, { author: 'Юлія', text: 'Колір трохи відрізняється від фото, але загалом все чудово. Розмір підійшов, якість хороша.', date: '2025-02-09', rating: 4 }, { author: 'Іван', text: 'Все сподобалось, дякую! Замовлення оформив за хвилину, товар приїхав вже через два дні.', date: '2025-03-03', rating: 5 }, { author: 'Наталія', text: 'Беру вже вдруге – супер! Дуже задоволена сервісом і швидкістю доставки.', date: '2025-03-19', rating: 5 }, { author: 'Марія', text: 'Тканина приємна до тіла, ніде не тисне. Розмір повністю відповідає сітці. Все на вищому рівні.', date: '2025-04-02', rating: 5 }, { author: 'Віктор', text: 'Замовлення було оброблено миттєво. Окрема подяка за приємне спілкування з менеджером.', date: '2025-04-15', rating: 4 }, { author: 'Олеся', text: 'Замовила як подарунок мамі — вона в захваті. Якість набагато краща, ніж очікувала за такі гроші.', date: '2025-04-28', rating: 5 }, { author: 'Тарас', text: 'Доставили на наступний день! Дуже здивований таким сервісом. Усе чітко.', date: '2025-05-02', rating: 5 }, { author: 'Ірина', text: 'Все підійшло. Упаковка міцна, товар без дефектів. Видно, що піклуються про клієнта.', date: '2025-05-10', rating: 5 }, { author: 'Максим', text: 'Залишився дуже задоволений покупкою. Магазин працює швидко та якісно. Так тримати!', date: '2025-05-13', rating: 5 }, { author: 'Оксана', text: 'Товар відповідає фото. Сидить чудово. Доставили вчасно, приємна упаковка.', date: '2025-05-18', rating: 5 }, { author: 'Дмитро', text: 'Брав для себе, але вже й дружина хоче такий самий. Гарна якість, зручна посадка.', date: '2025-05-21', rating: 5 }, { author: 'Катерина', text: 'Тканина не просвічується, якість на висоті. Порадувало, що можна повернути без проблем.', date: '2025-05-23', rating: 4 }, { author: 'Руслан', text: 'Сумнівався перед покупкою, але все прийшло ідеальним. Дякую за чесність!', date: '2025-05-25', rating: 5 }, { author: 'Лілія', text: 'Упаковка була настільки красива, що навіть шкода було розпаковувати. Рекомендую.', date: '2025-05-27', rating: 5 }, { author: 'Сергій', text: 'Ціни приємні, а сервіс ще кращий. Все зрозуміло, прозоро і швидко.', date: '2025-05-29', rating: 5 }, { author: 'Тетяна', text: 'Замовила одразу кілька речей — усе підійшло. Дуже зручно, що є консультація в чаті.', date: '2025-06-01', rating: 5 }, { author: 'Андрій', text: 'Товар отримав — все відповідає опису. Навіть більше — якість приємно здивувала.', date: '2025-06-03', rating: 5 }, { author: 'Світлана', text: 'Якість супер, доставка швидка, все добре упаковано. Вже порекомендувала подрузі.', date: '2025-06-04', rating: 5 },],
+            comments: [
+                { author: 'Анна', text: 'Дуже якісний товар!', date: '2024-12-01', rating: 5 },
+                { author: 'Олег', text: 'Швидка доставка.', date: '2025-01-14', rating: 5 },
+                { author: 'Юлія', text: 'Колір трохи відрізняється.', date: '2025-02-09', rating: 4 },
+                { author: 'Іван', text: 'Все сподобалось.', date: '2025-03-03', rating: 5 },
+                { author: 'Наталія', text: 'Беру вже вдруге – супер!', date: '2025-03-19', rating: 5 },
+            ],
         };
     },
     computed: {
         commentsLoop() {
-            return [...this.comments, ...this.comments];
+            return [
+                ...this.comments.slice(-this.visibleSlides),
+                ...this.comments,
+                ...this.comments.slice(0, this.visibleSlides),
+            ];
         },
     },
     mounted() {
-        this.updateVisibleSlides();
-        this.updateSlideWidth();
-        window.addEventListener('resize', this.updateVisibleSlides);
-        window.addEventListener('resize', this.updateSlideWidth);
-        this.startAutoPlay();
+        if (typeof window !== 'undefined') {
+            this.updateVisibleSlides();
+            this.updateSlideWidth();
+            this.setInitialPosition();
+            window.addEventListener('resize', this.onResize);
+            this.startAutoPlay();
+        }
     },
     beforeDestroy() {
-        window.removeEventListener('resize', this.updateVisibleSlides);
-        window.removeEventListener('resize', this.updateSlideWidth);
+        if (typeof window !== 'undefined') {
+            window.removeEventListener('resize', this.onResize);
+        }
         clearInterval(this.interval);
     },
     methods: {
+        onResize() {
+            this.updateVisibleSlides();
+            this.updateSlideWidth();
+        },
         updateVisibleSlides() {
-            if (window.innerWidth < 600) {
-                this.visibleSlides = 1;
-            } else if (window.innerWidth < 900) {
-                this.visibleSlides = 2;
-            } else {
-                this.visibleSlides = 4;
-            }
+            const width = window.innerWidth;
+            if (width < 320) this.visibleSlides = 1;
+            else if (width < 568) this.visibleSlides = 2;
+            else if (width < 768) this.visibleSlides = 3;
+            else this.visibleSlides = 4;
         },
         updateSlideWidth() {
-            const slide = this.$refs.slides[0];
-            this.slideWidth = slide ? slide.offsetWidth + 20 : 0; // +gap
+            this.$nextTick(() => {
+                const slide = this.$refs.slides?.[0];
+                this.slideWidth = slide ? slide.offsetWidth + 20 : 0; // +gap
+            });
+        },
+        setInitialPosition() {
+            this.currentIndex = this.visibleSlides;
         },
         nextSlide() {
             this.currentIndex++;
-            if (this.currentIndex >= this.comments.length) {
-                this.currentIndex = 0; // infinite loop
+            if (this.currentIndex >= this.comments.length + this.visibleSlides) {
+                this.resetPosition(true);
             }
         },
         prevSlide() {
-            if (this.currentIndex === 0) {
-                this.currentIndex = this.comments.length - 1;
-            } else {
-                this.currentIndex--;
+            this.currentIndex--;
+            if (this.currentIndex < this.visibleSlides) {
+                this.resetPosition(false);
             }
         },
+        resetPosition(toStart) {
+            setTimeout(() => {
+                this.currentIndex = toStart
+                    ? this.visibleSlides
+                    : this.comments.length + this.visibleSlides - 1;
+            }, 500);
+        },
         startAutoPlay() {
-            this.interval = setInterval(() => {
-                this.nextSlide();
-            }, 5000);
+            this.interval = setInterval(this.nextSlide, 5000);
         },
     },
 };
@@ -92,6 +126,7 @@ export default {
 
 <style scoped lang="scss">
 .container__main-comments {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
 
@@ -102,12 +137,20 @@ export default {
         text-align: center;
     }
 
+    &-carousel-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
     &-carousel {
-        position: relative;
         overflow: hidden;
+        max-width: 1000px;
 
         &-track-wrapper {
             overflow: hidden;
+            padding: 10px;
         }
 
         &-track {
@@ -128,50 +171,40 @@ export default {
             }
 
             &-text {
-                font-size: 16px;
+                font-size: clamp(12px, 2vw, 18px);
                 margin-bottom: 10px;
-                height: 100px;
+                height: 125px;
             }
 
             &-author,
             &-date,
             &-rating {
-                font-size: 14px;
+                font-size: clamp(10px, 2vw, 16px);
                 color: #555;
             }
         }
 
         &-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
             background: #fff;
             border: none;
-            font-size: 24px;
+            border-radius: 50px;
+            padding: 7px;
             cursor: pointer;
             z-index: 2;
-
-            &.left {
-                left: 10px;
-            }
-
-            &.right {
-                right: 10px;
-            }
         }
     }
 }
 
-/* Адаптивність */
-@media (max-width: 600px) {
+@media (max-width: 568px) {
     .container__main-comments-carousel-slide {
-        width: 80vw;
+        min-width: 60vw;
+        margin: 0 auto;
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
     .container__main-comments-carousel-slide {
-        width: 45vw;
+        min-width: 40vw;
     }
 }
 </style>

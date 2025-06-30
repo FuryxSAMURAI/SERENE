@@ -57,11 +57,10 @@ export default {
     display: inline-block;
     cursor: pointer;
     user-select: none;
-    font-size: 16px;
 
     .container__main-sort-selected {
-        padding: 8px 12px;
-        color: #666;
+        font-size: 18px;
+        color: #333;
         display: flex;
         align-items: center;
         gap: 5px;
@@ -79,13 +78,8 @@ export default {
         position: absolute;
         top: 100%;
         left: 0;
-        margin-top: 6px;
-        padding: 10px 0;
         background: #fff;
-        border-radius: 6px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         list-style: none;
-        min-width: 200px;
         z-index: 1000;
 
         .sort-option {

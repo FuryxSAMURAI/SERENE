@@ -2,23 +2,36 @@
   <section class="container__main-reviewed">
     <div class="container__main-reviewed-title">Рекомендовані товари</div>
 
-    <div class="carousel">
+    <div class="carousel__wrapper">
+      <!-- Ліва стрілка -->
       <button class="carousel__arrow left" @click="prevSlide">&#10094;</button>
 
-      <div class="carousel__track-wrapper">
-        <div class="carousel__track" :style="{ transform: `translateX(-${currentIndex * slideWidth}px)` }">
-          <div class="carousel__slide" v-for="recommended in getRecommended" :key="recommended.id" ref="slides">
-            <div class="carousel__slide-content">
-              <nuxt-link :to="`/product/${recommended.id}`" @click.native="saveToReviewed(recommended)">
-                <img :src="recommended.images[0]" :alt="recommended.slug" loading="lazy" />
-              </nuxt-link>
-              <div class="title">{{ recommended.title }}</div>
-              <div class="price">{{ recommended.price }} $</div>
+      <!-- Слайдер -->
+      <div class="carousel">
+        <div class="carousel__track-wrapper">
+          <div
+            class="carousel__track"
+            :style="{ transform: `translateX(-${currentIndex * slideWidth}px)` }"
+          >
+            <div
+              class="carousel__slide"
+              v-for="recommended in getRecommended"
+              :key="recommended.id"
+              ref="slides"
+            >
+              <div class="carousel__slide-content">
+                <nuxt-link :to="`/product/${recommended.id}`" @click.native="saveToReviewed(recommended)">
+                  <img :src="recommended.images[0]" :alt="recommended.slug" loading="lazy" />
+                </nuxt-link>
+                <div class="title">{{ recommended.title }}</div>
+                <div class="price">{{ recommended.price }} $</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- Права стрілка -->
       <button class="carousel__arrow right" @click="nextSlide">&#10095;</button>
     </div>
   </section>
@@ -87,9 +100,16 @@ export default {
   }
 }
 
+.carousel__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
 .carousel {
-  position: relative;
   overflow: hidden;
+  max-width: 1000px;
 
   &__track-wrapper {
     overflow: hidden;
@@ -126,22 +146,11 @@ export default {
   }
 
   &__arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
     background: #fff;
     border: none;
     font-size: 24px;
     cursor: pointer;
     z-index: 2;
-
-    &.left {
-      left: 10px;
-    }
-
-    &.right {
-      right: 10px;
-    }
   }
 }
 

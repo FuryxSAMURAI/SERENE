@@ -1,24 +1,27 @@
 <template>
-    <div class="container__main-promo-baner">
-        <div class="container__main-promo-baner-blocks" v-for="(baner, index) in promoBanners" :key="index" v-show="currentIndex === index">
-            <div class="container__main-promo-baner-blocks-descs">
-                <div class="container__main-promo-baner-blocks-descs-header"></div>
-                <div class="container__main-promo-baner-blocks-descs-main">
-                    <p class="container__main-promo-baner-blocks-descs-main-title">
-                        {{ baner.title }}
-                    </p>
-                    <p class="container__main-promo-baner-blocks-descs-main-text">
-                        {{ baner.text }}
-                    </p>
-                    <button>{{ baner.cta }}</button>
-                </div>
-                <div class="container__main-promo-baner-blocks-descs-footer">
-                    <button class="container__main-promo-baner-blocks-descs-footer-slide-prev" @click="prevSlide"><i class="fa-solid fa-arrow-left fa-lg" style="color: #000000;"></i></button><div class="container__main-promo-baner-blocks-descs-footer-slider"> {{ currentIndex+1 }} / {{ promoBanners.length }} </div><button class="container__main-promo-baner-blocks-descs-footer-slide-next" @click="nextSlide"><i class="fa-solid fa-arrow-right fa-lg" style="color: #000000;"></i></button>
-                </div>
+    <div class="container__main-promo-banner">
+        <div class="container__main-promo-banner-block" v-for="(banner, index) in promoBanners" :key="index"
+            v-show="currentIndex === index">
+            <div class="container__main-promo-banner-block-description">
+                <p class="container__main-promo-banner-block-description-title">
+                    {{ banner.title }}
+                </p>
+                <p class="container__main-promo-banner-block-description-text">
+                    {{ banner.text }}
+                </p>
+                <button class="container__main-promo-banner-block-description-button">{{ banner.cta }}</button>
             </div>
-            <div class="container__main-promo-baner-blocks-images">
-                <img :src="baner.image" :alt="baner.title">
+            <div class="container__main-promo-banner-block-images">
+                <img :src="banner.image" :alt="banner.title">
             </div>
+        </div>
+        <div class="container__main-promo-banner-slider">
+            <div class="container__main-promo-banner-slider-count"> {{ currentIndex + 1 }} / {{
+                promoBanners.length }} </div>
+            <button class="container__main-promo-banner-slider-prev" @click="prevSlide"><i
+                    class="fa-solid fa-arrow-left fa-xl" style="color: #000000;"></i></button>
+            <button class="container__main-promo-banner-slider-next" @click="nextSlide"><i
+                    class="fa-solid fa-arrow-right fa-xl" style="color: #000000;"></i></button>
         </div>
     </div>
 </template>
@@ -103,20 +106,20 @@ export default {
             timer: null,
         }
     },
-    mounted(){
-        this.startRotation()   
+    mounted() {
+        this.startRotation()
     },
-    methods:{
-        startRotation(){
-            this.timer = setInterval(()=>{
+    methods: {
+        startRotation() {
+            this.timer = setInterval(() => {
                 this.nextSlide()
-            },10000)
+            }, 10000)
         },
-        prevSlide(){
+        prevSlide() {
             this.currentIndex = (this.currentIndex - 1 + this.promoBanners.length) % this.promoBanners.length
             this.timer = null
         },
-        nextSlide(){
+        nextSlide() {
             this.currentIndex = (this.currentIndex + 1) % this.promoBanners.length
             this.timer = null
         }
@@ -125,65 +128,152 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.container__main-promo-baner{
-    &-blocks{
+.container__main-promo-banner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 60px auto 0;
+
+    &-block {
         display: flex;
-        justify-content: center;
-        gap: 50px;
-        &-descs{
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+
+        &-description {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            height: 550px;
-            width: calc(100vw/2.5);
-            &-main{
-                &-title{
-                    font-size: 28px;
-                    font-weight: bold;
-                    height: 80px;
-                    width: calc(100%/1.5);
-                    margin: 20px 0;
-                }
-                &-text{
-                    font-size: 24px;
-                    width: calc(100%/1.5);
-                    height: 120px;
-                    margin: 20px 0;
-                }
-                button{
-                    background-color: #333;
-                    border: none;
-                    color: #fff;
-                    height: 50px;
-                    width: 200px;
-                }
+            gap: 20px;
+
+            &-title {
+                width: 80%;
+                font-size: clamp(24px, 2vw, 32px);
+                font-weight: 600;
+                text-align: left;
             }
-            &-footer{
-                display: flex;
-                &-slider{
-                    // margin: 10px 30px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: 100px;
-                    font-size: 16px;  
-                }
-                &-slide{
-                    &-prev, &-next{
-                        padding: 10px;
-                        border: none;
-                        background-color: transparent;
-                    }
-                }
+
+            &-text {
+                width: 80%;
+                font-size: clamp(14px, 2vw, 22px);
+                font-weight: 400;
+                text-align: left;
+            }
+
+            &-button {
+                margin-top: 40px;
+                height: 60px;
+                font-size: clamp(10px, 2vw, 14px);
+                width: 300px;
+                border: none;
+                background: #333;
+                color: #fff;
+                transition: all .3s ease;
             }
         }
-        &-images{
-            height: 550px;
-            width: calc(100vw/2.5);
-            img{
+
+        &-images {
+            height: 500px;
+            min-width: 600px;
+            transition: all .3s ease;
+
+            img {
                 height: 100%;
                 width: 100%;
                 object-fit: cover;
+            }
+        }
+    }
+
+    &-slider {
+        display: flex;
+        margin-top: 40px;
+
+        &-count {
+            max-width: 70px;
+            margin-right: 20px;
+            font-size: 18px;
+            line-height: 22px;
+            font-weight: 500;
+        }
+
+        &-prev,
+        &-next {
+            background: transparent;
+            border: none;
+            margin-right: 20px;
+        }
+    }
+}
+
+@media(max-width: 1260px) {
+    .container__main-promo-banner {
+        padding: 0 20px;
+
+        &-block {
+            &-description {
+                &-button {
+                    height: 60px;
+                    width: 200px;
+                }
+            }
+
+            &-images {
+                height: 400px;
+                min-width: 500px;
+            }
+        }
+    }
+}
+
+@media(max-width: 768px) {
+    .container__main-promo-banner {
+        padding: 0 20px;
+
+        &-block {
+            display: flex;
+            flex-direction: column-reverse;
+
+            &-description {
+                &-title, &-text {
+                    width: 80%;
+                }
+
+                &-button {
+                    margin-top: 0;
+                    height: 60px;
+                    width: 50%;
+                }
+            }
+
+            &-images {
+                height: 400px;
+                width: 100vw;
+            }
+        }
+    }
+}
+@media (max-width: 576px){
+    .container__main-promo-banner {
+        padding: 0 20px;
+
+        &-block {
+            display: flex;
+            flex-direction: column-reverse;
+
+            &-description {
+                &-title, &-text {
+                    width: 100%;
+                }
+
+                &-button {
+                    margin-top: 0;
+                    height: 60px;
+                    width: 100%;
+                }
+            }
+
+            &-images {
+                height: 400px;
+                min-width: 100vw;
             }
         }
     }

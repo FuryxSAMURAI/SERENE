@@ -34,7 +34,9 @@ export default {
 
 <style scoped lang="scss">
 .container__main {
-    margin: 100px 50px;
+    margin: 40px auto;
+    width: 100%;
+    max-width: 1200px;
 
     &-block {
         &-category {
@@ -45,9 +47,8 @@ export default {
 
             &-blocks {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                ;
-                gap: 32px;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                grid-gap: 20px;
 
                 &-wrapper {
                     transition: box-shadow .3s ease-in-out;
@@ -57,7 +58,7 @@ export default {
                     }
 
                     &-img {
-                        height: 250px;
+                        height: 200px;
                         width: 100%;
 
                         img {
@@ -77,6 +78,12 @@ export default {
                 }
             }
         }
+    }
+}
+
+@media (max-width:1260px){
+    .container__main {
+        padding: 0 20px;
     }
 }
 </style>

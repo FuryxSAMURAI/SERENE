@@ -41,7 +41,7 @@
         <div class="container__header-menu" :class="{ open: isMenuOpen }">
             <div class="container__header-menu-header">
                 <div class="container__header-menu-header-logo">
-                    <nuxt-link to="/">SERÈNE</nuxt-link>
+                    <nuxt-link to="/" @click.native="closeMenu">SERÈNE</nuxt-link>
                 </div>
                 <div class="container__header-menu-header-search">
                     <input type="text" name="search" placeholder="Search here">

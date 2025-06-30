@@ -2,7 +2,14 @@
     <section class="container__main-catalog">
         <div class="container__main-catalog-sort">
             <div class="container__main-catalog-sort-all-products">{{ getProducts.length }} товарів </div>
-            <AppSortByPrice />
+            <div class="container__main-catalog-sort-filter">
+                <div class="sort">
+                    <AppSortByPrice />
+                </div>
+                <div class="filter">
+                    <AppFilterMobile />
+                </div>
+            </div>
         </div>
         <div class="container__main-catalog-blocks">
             <div class="container__main-catalog-blocks-block" v-if="getProducts.length"
@@ -55,11 +62,13 @@ import { mapState, mapActions, mapGetters } from 'vuex'
 import AppAddCart from '../buttons/AppAddCart.vue';
 import AppAddFavorite from '../buttons/AppAddFavorite.vue';
 import AppSortByPrice from './filters/AppSortByPrice.vue';
+import AppFilterMobile from './filters/AppFilterMobile.vue';
 export default {
     components: {
         AppAddCart,
         AppAddFavorite,
         AppSortByPrice,
+        AppFilterMobile,
     },
     computed: {
         ...mapState('catalog', ['currentPage', 'loading']),
@@ -102,6 +111,16 @@ export default {
 
         &-all-products {
             color: #898686;
+        }
+
+        &-filter {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            .filter {
+                display: none;
+            }
         }
     }
 
@@ -225,6 +244,22 @@ export default {
 
 @media (max-width:768px) {
     .container__main-catalog {
+        &-sort {
+            &-filter {
+                .sort {
+                    display: none;
+                    background: #fff;
+                    color: #333;
+                    padding: 9px 20px;
+                    border: 1px solid #333;
+                }
+
+                .filter {
+                    display: block;
+                }
+            }
+        }
+
         &-blocks {
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         }

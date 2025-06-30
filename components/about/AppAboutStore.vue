@@ -26,7 +26,9 @@
     padding: 40px 0;
     width: 100%;
     max-width: 1200px;
+    margin: 0 auto;
     display: flex;
+    align-items: center;
     justify-content:center;
     gap: 20px;
     &-content{
@@ -37,10 +39,12 @@
         flex-direction: column;
         gap: 20px;
         &-title{
+            width: 85%;
             font-weight: 700;
             font-size: clamp(24px, 2vw, 28px);
         }
         &-text{
+            width: 85%;
             font-weight: 400;
             font-size: clamp(12px, 2vw, 18px);
         }
@@ -56,15 +60,24 @@
     }
 }
 
+@media (max-width: 1260px){
+    .container__main-about-store {
+        padding: 0 20px;
+    }
+}
 @media (max-width: 768px){
     .container__main-about-store {
         display: block;
         &-content{
+            padding: 0 20px;
             width: 100%;
             margin: 0 0 20px;
+            &-title, &-text{
+                width: 100%;
+            }
         }
         &-image{
-            width: 100%;
+            min-width: 100vw;
         }
     }
 }

@@ -13,25 +13,19 @@
       <!-- Слайдер -->
       <div class="carousel">
         <div class="carousel__track-wrapper">
-          <div
-            class="carousel__track"
-            :style="{ transform: `translateX(-${currentIndex * slideWidth}px)` }"
-          >
-            <div
-              class="carousel__slide"
-              v-for="reviewed in getReviewed"
-              :key="reviewed.id"
-              ref="slides"
-            >
+          <div class="carousel__track" :style="{ transform: `translateX(-${currentIndex * slideWidth}px)` }">
+            <div class="carousel__slide" v-for="reviewed in getReviewed" :key="reviewed.id" ref="slides">
               <div class="carousel__slide-content">
                 <nuxt-link :to="`/product/${reviewed.id}`">
                   <img :src="reviewed.images[0]" :alt="reviewed.slug" loading="lazy" />
                 </nuxt-link>
                 <div class="title">{{ reviewed.title }}</div>
-                <div class="price">{{ reviewed.price }} $</div>
-                <div class="buttons">
-                  <AppAddFavorite />
-                  <AppAddCart />
+                <div class="bottom">
+                  <div class="price">{{ reviewed.price }} $</div>
+                  <div class="buttons">
+                    <AppAddFavorite />
+                    <AppAddCart />
+                  </div>
                 </div>
               </div>
             </div>
@@ -107,7 +101,6 @@ export default {
     font-size: 24px;
     font-weight: 600;
     margin: 20px 0;
-    text-align: center;
   }
 
   &-null {
@@ -120,13 +113,15 @@ export default {
 .carousel__wrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 10px;
 }
 
 .carousel {
   overflow: hidden;
-  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
 
   &__track-wrapper {
     overflow: hidden;
@@ -144,8 +139,6 @@ export default {
   }
 
   &__slide-content {
-    text-align: center;
-
     img {
       width: 100%;
       height: 200px;
@@ -153,8 +146,16 @@ export default {
     }
 
     .title {
+      height: 60px;
       font-size: 16px;
       margin: 5px 0;
+    }
+
+    .bottom {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .price {
@@ -164,7 +165,7 @@ export default {
 
     .buttons {
       display: flex;
-      justify-content: center;
+      align-items: center;
       gap: 10px;
     }
   }
@@ -178,7 +179,6 @@ export default {
   }
 }
 
-/* Адаптивність */
 @media (max-width: 600px) {
   .carousel__slide {
     width: 80vw;

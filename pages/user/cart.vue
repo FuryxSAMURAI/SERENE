@@ -4,7 +4,7 @@
             <AppCart :getCart="getCart" />
         </div>
         <div class="flex-checkout">
-            <AppChekout :getTotal="getTotal"/>
+            <AppChekout :getTotal="getTotal" />
         </div>
     </section>
 </template>
@@ -38,6 +38,10 @@ export default {
     display: flex;
     gap: 40px;
 
+}
+
+.flex-cart {
+    width: 100%;
 }
 
 .flex-checkout {

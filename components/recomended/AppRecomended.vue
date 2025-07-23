@@ -96,20 +96,21 @@ export default {
     font-size: 24px;
     font-weight: 600;
     margin: 20px 0;
-    text-align: center;
   }
 }
 
 .carousel__wrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 10px;
 }
 
 .carousel {
   overflow: hidden;
-  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
 
   &__track-wrapper {
     overflow: hidden;
@@ -123,12 +124,10 @@ export default {
 
   &__slide {
     flex: 0 0 auto;
-    width: 250px; // твоя ширина товару
+    width: 250px;
   }
 
   &__slide-content {
-    text-align: center;
-
     img {
       width: 100%;
       height: 200px;
@@ -136,6 +135,7 @@ export default {
     }
 
     .title {
+      height: 60px;
       font-size: 16px;
       margin: 5px 0;
     }
@@ -154,7 +154,6 @@ export default {
   }
 }
 
-/* Адаптивність */
 @media (max-width: 600px) {
   .carousel__slide {
     width: 80vw;

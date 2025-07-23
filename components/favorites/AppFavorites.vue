@@ -3,10 +3,10 @@
         <div class="container__main-favorites-block-header">
             <div class="container__main-favorites-block-header-title">Улюблені:</div>
             <div class="container__main-favorites-block-header-counter">{{ getFavorites.length }} <span
-                    v-if="getFavorites.length == 1">товар</span><span v-else>товарів</span>
+                    v-if="getFavorites.length === 1">товар</span><span v-else>товарів</span>
             </div>
         </div>
-        <span class="container__main-favorites-block-content-block-hr" v-if="getFavorites.length != 1"></span>
+        <span class="hr" v-if="getFavorites.length != 1"></span>
         <div class="container__main-favorites-block-content">
             <div class="container__main-favorites-block-content-block" v-for="(favorite, index) in getFavorites"
                 :key="index">
@@ -222,9 +222,10 @@ export default {
 }
 
 @media (max-width: 768px) {
-    .layout__main{
+    .layout__main {
         padding: 0;
     }
+
     .container__main-favorites-block-header {
         &-title {
             font-size: 18px;
@@ -272,6 +273,7 @@ export default {
             &-buttons {
                 display: block;
                 gap: 10px;
+
                 button {
                     font-size: 12px;
                 }

@@ -2,20 +2,23 @@
   <section class="container__main-account">
     <h1 class="container__main-account-title">Мій кабінет</h1>
 
-    <!-- 🔹 Блок даних користувача -->
     <div class="container__main-account-user">
       <h2>Мої дані</h2>
+      <span class="hr"></span>
       <ul>
-        <li><strong>Ім'я:</strong> {{ user.name }}</li>
-        <li><strong>Email:</strong> {{ user.email }}</li>
-        <li><strong>Телефон:</strong> {{ user.phone }}</li>
+        <li><label>Ім'я:</label><input type="text" v-model="user.name" :disabled="!isEditing" /></li>
+        <li><label>Фамілія:</label><input type="text" v-model="user.surname" :disabled="!isEditing" /></li>
+        <li><label>Email:</label><input type="text" v-model="user.email" :disabled="!isEditing" /></li>
+        <li><label>Телефон:</label><input type="text" v-model="user.phone" :disabled="!isEditing" /></li>
       </ul>
-      <button class="container__main-account-edit">Редагувати дані</button>
+      <button class="container__main-account-edit" @click="toggleEdit">
+        {{ isEditing ? 'Зберегти дані' : 'Редагувати дані' }}
+      </button>
     </div>
 
-    <!-- 🔹 Блок замовлень -->
     <div class="container__main-account-orders">
       <h2>Мої замовлення</h2>
+      <span class="hr"></span>
       <div v-if="orders.length === 0">
         <p>Ви ще не робили замовлень.</p>
       </div>
@@ -32,35 +35,26 @@
       </div>
     </div>
 
-    <!-- 🔹 Блок обраного -->
-    <div class="container__main-account-favorite">
-      <h2>Обрані товари</h2>
-      <div v-if="favorites.length === 0">
-        <p>У вас немає обраних товарів.</p>
-      </div>
-      <div v-else class="container__main-account-favorite-list">
-        <div v-for="product in favorites" :key="product.id" class="container__main-account-favorite-item">
-          <nuxt-link :to="`/product/${product.id}`">
-            <img :src="product.images[0]" :alt="product.title" loading="lazy" />
-            <p>{{ product.title }}</p>
-            <p>{{ product.price }} грн</p>
-          </nuxt-link>
-        </div>
-      </div>
+    <div class="container__main-account-reviewed">
+      <AppReviewedProducts />
     </div>
 
-    <!-- 🔹 Кнопка виходу -->
     <button class="container__main-account-logout" @click="logout">Вийти з кабінету</button>
-
   </section>
 </template>
-
 <script>
+import AppReviewedProducts from '~/components/reviewed/AppReviewedProducts.vue'
+
 export default {
+  components: {
+    AppReviewedProducts
+  },
   data() {
     return {
+      isEditing: false,
       user: {
-        name: 'Іван Петренко',
+        name: 'Іван',
+        surname: 'Петренко',
         email: 'ivan@example.com',
         phone: '+380961234567',
       },
@@ -68,25 +62,27 @@ export default {
         { id: 1234, date: '2025-06-25', status: 'Доставлено', total: 1250 },
         { id: 1235, date: '2025-06-27', status: 'Очікує відправки', total: 890 },
       ],
-      favorites: [
-        { id: 1, title: 'Футболка SERENE', price: 350, images: ['/images/tshirt.jpg'] },
-        { id: 2, title: 'Светр Minimal', price: 590, images: ['/images/sweater.jpg'] },
-      ],
     };
   },
   methods: {
     logout() {
-      // Логіка виходу користувача
       console.log('User logged out');
     },
-  },
+    toggleEdit() {
+      if (this.isEditing) {
+        // Тут можна додати логіку збереження (API запит)
+        console.log('Дані збережено:', this.user);
+      }
+      this.isEditing = !this.isEditing;
+    }
+  }
 };
 </script>
-
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .container__main-account {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 80px auto;
+  width: 100%;
   padding: 20px;
 
   &-title {
@@ -96,12 +92,16 @@ export default {
     text-align: center;
   }
 
-  &-user, &-orders, &-favorite {
+  &-user,
+  &-orders {
     margin-bottom: 40px;
+    padding: 20px;
+    background-color: #f8f8f8;
 
     h2 {
       font-size: 24px;
       margin-bottom: 10px;
+      padding: 0 10px;
     }
 
     ul {
@@ -109,19 +109,67 @@ export default {
       padding: 0;
 
       li {
-        margin-bottom: 10px;
-        font-size: 16px;
-        line-height: 1.6;
+        position: relative;
+        margin-bottom: 20px;
+
+        label {
+          position: absolute;
+          top: 0;
+          left: 12px;
+          transform: translateY(-50%);
+          font-size: 11px;
+          line-height: 1;
+          padding: 0 4px;
+          background-color: #fbf8f8;
+          pointer-events: none;
+          z-index: 2;
+        }
+
+        input {
+          width: 100%;
+          max-width: 250px;
+          height: 40px;
+          padding: 0 10px;
+          font-size: 14px;
+          border-radius: 3px;
+          border: 1px solid #333;
+          background-color: #fff;
+          text-transform: uppercase;
+          user-select: none;
+          transition: all 0.3s ease;
+          position: relative;
+          z-index: 1;
+          color: #000;
+
+          &:focus,
+          &:active {
+            outline: none;
+            border-color: #000;
+          }
+
+          &:disabled {
+            background-color: #fbf8f8;
+            color: #333;
+          }
+        }
+
       }
     }
 
     button {
       margin-top: 10px;
-      padding: 8px 16px;
+      padding: 10px 20px;
       background: #333;
       color: #fff;
       border: none;
+      border-radius: 3px;
       cursor: pointer;
+      font-size: 14px;
+      transition: all .3s ease;
+
+      &:hover {
+        background-color: #444;
+      }
     }
   }
 
@@ -132,36 +180,23 @@ export default {
     text-decoration: underline;
   }
 
-  &-favorite-list {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  &-favorite-item {
-    width: 150px;
-    text-align: center;
-
-    img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 5px;
-    }
-
-    p {
-      font-size: 14px;
-    }
+  &-reviewed {
+    margin: 40px 0;
   }
 
   &-logout {
     display: block;
     margin: 0 auto;
     padding: 10px 20px;
-    background: #555;
+    background: #444;
     color: #fff;
     border: none;
     font-size: 16px;
     cursor: pointer;
+
+    &:hover {
+      background-color: #666;
+    }
   }
 }
 </style>

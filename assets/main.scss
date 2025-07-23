@@ -18,6 +18,18 @@ li {
   list-style-type: none;
 }
 
+.hr {
+  display: block;
+  &::before {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 100%;
+    margin: 10px 0;
+    background-color: #e6e6e6;
+  }
+}
+
 .container__main-sort-title,
 .container__main-sort-category {
   display: flex;
